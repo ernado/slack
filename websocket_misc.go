@@ -138,3 +138,14 @@ type MemberLeftChannelEvent struct {
 	ChannelType string `json:"channel_type"`
 	Team        string `json:"team"`
 }
+
+// DesktopNotification represents desktop notification event
+type DesktopNotification struct {
+	Title     string `json:"title"`
+	Subtitle  string `json:"subtitle"`
+	Msg       string `json:"msg"`
+	EventTS   string `json:"event_ts"`
+	Channel   string `json:"channel"`
+	LaunchURI string `json:"launchUri"`
+	Content   string `json:"content"`
+}
