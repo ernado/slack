@@ -361,8 +361,6 @@ func (rtm *RTM) handleRawEvent(rawEvent json.RawMessage) string {
 		rtm.handlePong(rawEvent)
 	case rtmEventTypeGoodbye:
 		// just return the event type up for goodbye, will be handled by caller.
-	case rtmEventTypeDesktopNotification:
-		rtm.Debugln("Received desktop notification, ignoring")
 	default:
 		rtm.handleEvent(event.Type, rawEvent)
 	}
@@ -443,9 +441,10 @@ func (rtm *RTM) handleEvent(typeStr string, event json.RawMessage) {
 // implementations. The structs should be instances of the unmarshalling
 // target for the matching event type.
 var EventMapping = map[string]interface{}{
-	"message":         MessageEvent{},
-	"presence_change": PresenceChangeEvent{},
-	"user_typing":     UserTypingEvent{},
+	"desktop_notification": DesktopNotification{},
+	"message":              MessageEvent{},
+	"presence_change":      PresenceChangeEvent{},
+	"user_typing":          UserTypingEvent{},
 
 	"channel_marked":          ChannelMarkedEvent{},
 	"channel_created":         ChannelCreatedEvent{},
